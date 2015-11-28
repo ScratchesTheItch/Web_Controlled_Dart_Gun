@@ -1,0 +1,20 @@
+#!/bin/bash
+
+print_html_head(){ 
+    echo -e "Content-type:text/html\r\n\r\n";
+    echo -e "<HTML>\n";
+    echo -e "<META http-equiv=\"refresh\" content=\"0,javascript:window.history.back()\">\n";
+    echo -e "<BODY>\n";
+}
+
+print_html_foot(){
+    echo -e "</BODY></HTML>";
+}
+
+print_html_head
+
+echo -e "<H1>Command <B><I>\"$1\"</I></B> Received</H1>\n";
+
+echo $1 > /Users/Shared/commandfifo
+
+print_html_foot

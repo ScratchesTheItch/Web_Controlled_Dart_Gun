@@ -1,0 +1,48 @@
+<HTML>
+    <!-- Change path to video camera feed below -->
+    <HEAD>
+        <TITLE>Dart Gun Fire Control</TITLE>
+        <SCRIPT>
+            function sendCommand(cstring){
+                xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET","/cgi-bin/command?" + cstring, true);
+                xmlhttp.send();
+            }
+        </SCRIPT>
+        <STYLE>
+            body {
+                background-image: url("images/rifling.jpg");
+                background-repeat: no-repeat;
+                height: 100%;
+                width: 420px;
+            }
+            iframe.video {
+                position: fixed;
+                top: 50px;
+                left: 50px;
+                z-index: 1;
+                width: 320px;
+                height: 240px;
+            }
+            img.target {
+                position: fixed;
+                top: 120px;
+                left: 160px;
+                width: 100px;
+                height: 100px;
+                z-index: 2;
+             }
+        </STYLE>
+    </HEAD>
+    <BODY>
+        <button type="button" onclick=sendCommand("arm") >Arm Weapon</button>
+<button type="button" onclick=sendCommand("shot") >Take a Single Shot</button>
+<button type="button" onclick=sendCommand("salvo") >Go Full Auto</button>
+<button type="button" onclick=sendCommand("stop") >Stop Weapon</button>
+
+        <!-- Change location below to video feed of associated web camera-->
+        <IFRAME class="video" src="http://192.168.1.23/video.cgi" >
+            </IFRAME> 
+            <IMG class="target" src="/images/target.png" width=100 height=100>
+    </BODY>
+</HTML>
